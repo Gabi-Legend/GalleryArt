@@ -1,20 +1,34 @@
 import styles from "./Main.module.css";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 function Main() {
-  const navigate = useNavigate();
+  const [artworks, setArtworks] = useState([]);
+
+  useEffect(() => {
+    const storedArtworks = JSON.parse(localStorage.getItem("artworks")) || [];
+    setArtworks(storedArtworks);
+  }, []);
+
   return (
     <div className={styles.container}>
       <h1>Gallery Art</h1>
       <div className={styles.artworks}>
-        <p>Artworks</p>
+        {artworks.length === 0 ? (
+          <p>No artworks yet.</p>
+        ) : (
+          artworks.map((art, index) => (
+            <div key={index} className={styles.artItem}>
+              <img
+                src={art.image}
+                alt={`art-${index}`}
+                className={styles.artImage}
+              />
+              <p>{art.description}</p>
+            </div>
+          ))
+        )}
       </div>
-      <button
-        onClick={() => {
-          navigate("/artwork");
-        }}
-      >
-        Add Artwork
-      </button>
+      <button>Add Artwork</button>
     </div>
   );
 }
