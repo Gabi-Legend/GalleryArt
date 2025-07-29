@@ -56,6 +56,42 @@
   background-color: #357ac8;
 }
 
+.artItem {
+  margin: 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #fff;
+  position: relative;
+  text-align: center;
+}
+
+.artImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+.heartButton {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.heartButton:hover {
+  transform: scale(1.2);
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1rem;

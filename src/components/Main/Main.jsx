@@ -9,6 +9,14 @@ function Main() {
     setArtworks(storedArtworks);
   }, []);
 
+  const toggleFavorite = (index) => {
+    const updated = [...artworks];
+    updated[index].favorite = !updated[index].favorite;
+
+    setArtworks(updated);
+    localStorage.setItem("artworks", JSON.stringify(updated));
+  };
+
   return (
     <div className={styles.container}>
       <h1>Gallery Art</h1>
@@ -23,7 +31,15 @@ function Main() {
                 alt={`art-${index}`}
                 className={styles.artImage}
               />
-              <p>{art.description}</p>
+              <p className={styles.description}>{art.description}</p>
+              <button
+                className={`${styles.heartButton} ${
+                  art.favorite ? styles.favorited : ""
+                }`}
+                onClick={() => toggleFavorite(index)}
+              >
+                {art.favorite ? "❤️" : "🤍"}
+              </button>
             </div>
           ))
         )}
